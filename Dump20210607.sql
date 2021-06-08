@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `responses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `responses` (
   `idresponses` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) NOT NULL,
-  `PhoneNumber` varchar(45) NOT NULL,
-  `Email` varchar(320) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `Stack` varchar(8000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `References` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `CV` varchar(100) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `email` varchar(320) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `stack` varchar(8000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `reference` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `cv` varchar(100) NOT NULL,
   PRIMARY KEY (`idresponses`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-07 13:34:18
+-- Dump completed on 2021-06-07 14:26:46
