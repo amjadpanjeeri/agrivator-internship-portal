@@ -39,7 +39,7 @@
                 <h1 style="font-weight: 700;" class="text-center my-5 h1-responsive">
                     Agrivator Internship Program
                 </h1>
-                <form class="row g-3 align-items-center mb-5">
+                <form class="row g-3 align-items-center mb-5" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
                     <div class="col-12">
                         <label for="name" class="form-label">Name</label>
                         <input type="name" name="name" class="form-control form-rounded" id="email" required>
@@ -104,31 +104,32 @@
                                         'image/jpeg',
                                         'image/png'
                                       );
-                                      
+                                      var_dump($_FILES['cv']);
+
                                       $extension = end(explode(".", $_FILES["cv"]["name"]));
                                       
                                       if ( 20000 < $_FILES["cv"]["size"]  ) {
-                                        die( 'Please provide a smaller cv [E/1].' );
+                                        die( 'Please provide a smaller file [E/1].' );
                                       }
                                       
                                       if ( ! ( in_array($extension, $allowedExts ) ) ) {
-                                        die('Please provide another cv type [E/2].');
+                                        die('Please provide another file type [E/2].');
                                       }
                                       
                                       if ( in_array( $_FILES["cv"]["type"], $allowedMimeTypes ) ) 
                                       {      
                                        move_uploaded_file($_FILES["cv"]["tmp_name"], "upload/" . $_FILES["cv"]["name"]); 
+                                       $cv = $_FILES['cv']["name"]+time;
+                                       $sql ="insert into agrivator_intern.responses(name,email,phone,stack,reference,cv) values ('$name','$email','$phone','$stack','$reference','sf s r et')";
+                                      
                                       }
                                       else
                                       {
-                                      die('Please provide another cv type [E/3].');
+                                      die('Please provide another file type [E/3].');
                                       }
                                      //console_log($_FILES['cv']);
-                                     var_dump($_FILES['cv']);
                                       if($name !=''||$email !=''){
                                       //Insert Query of SQL
-                                      $cv = $_FILES['cv']["name"]+time;
-                                      $sql ="insert into agrivator_intern.responses(name,email,phone,stack,reference,cv) values ('$name','$email','$phone','$stack','$reference','sf s r et')";
                                       if (mysqli_query($conn, $sql)) 
                                       {
                                         $message = "Data Submitted";
