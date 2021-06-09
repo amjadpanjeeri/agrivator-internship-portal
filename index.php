@@ -39,7 +39,7 @@
                 <h1 style="font-weight: 700;" class="text-center my-5 h1-responsive">
                     Agrivator Internship Program
                 </h1>
-                <form class="row g-3 align-items-center mb-5" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
+                <form class="row g-3 align-items-center mb-5" method="post" action="<?=$_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
                     <div class="col-12">
                         <label for="name" class="form-label">Name</label>
                         <input type="name" name="name" class="form-control form-rounded" id="email" required>
@@ -102,13 +102,13 @@
                                         'text/pdf',
                                         'image/gif',
                                         'image/jpeg',
-                                        'image/png'
+                                        'image/png','application/vnd.openxmlformats-officedocument.wordprocessingml.document'
                                       );
                                       var_dump($_FILES['cv']);
-
-                                      $extension = end(explode(".", $_FILES["cv"]["name"]));
+$ex=explode(".", $_FILES["cv"]["name"]);
+                                      $extension = end($ex);
                                       
-                                      if ( 20000 < $_FILES["cv"]["size"]  ) {
+                                      if ( 2000000 < $_FILES["cv"]["size"]  ) {
                                         die( 'Please provide a smaller file [E/1].' );
                                       }
                                       
@@ -117,10 +117,14 @@
                                       }
                                       
                                       if ( in_array( $_FILES["cv"]["type"], $allowedMimeTypes ) ) 
-                                      {      
-                                       move_uploaded_file($_FILES["cv"]["tmp_name"], "upload/" . $_FILES["cv"]["name"]); 
-                                       $cv = $_FILES['cv']["name"]+time;
-                                       $sql ="insert into agrivator_intern.responses(name,email,phone,stack,reference,cv) values ('$name','$email','$phone','$stack','$reference','sf s r et')";
+                                      {    
+                                        $cv = $name.time().$_FILES["cv"]["name"];  
+                                       // $destination_path = getcwd().DIRECTORY_SEPARATOR;
+                                       //$target_path = $destination_path . basename( $_FILES["cv"]["name"]);
+                                           //move_uploaded_file($_FILES['cv']['tmp_name'], $target_path)
+                                      move_uploaded_file($_FILES["cv"]["tmp_name"], __DIR__."\uploads"."\\".$cv ); 
+                                       
+                                       $sql ="insert into agrivator_intern.responses(name,email,phone,stack,reference,cv) values ('$name','$email','$phone','$stack','$reference','$cv')";
                                       
                                       }
                                       else
