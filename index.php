@@ -104,7 +104,7 @@
                                         'image/jpeg',
                                         'image/png','application/vnd.openxmlformats-officedocument.wordprocessingml.document'
                                       );
-                                      var_dump($_FILES['cv']);
+                                     // var_dump($_FILES['cv']);
 $ex=explode(".", $_FILES["cv"]["name"]);
                                       $extension = end($ex);
                                       
